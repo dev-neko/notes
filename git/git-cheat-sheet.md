@@ -120,3 +120,33 @@ $ git remote -v
 $ git push heroku master
 
 ```
+
+
+## Git Real : Level 3
+
+### クローン、ブランチ関連
+
+```
+
+# Clone a repo.
+$ git clone http://..../git-repo.git
+$ git clone http://..../git-repo.git git-demo
+
+# Create a branch and checkout it.
+$ git branch cat
+$ git checkout cat
+
+# Create and checkout a branch one time.
+$ git checkout -b cat
+
+$ git add catlist.txt
+$ git commit -m "add catlist.txt"
+
+# Merge changes from cat branch to master.
+$ git checkout master
+$ git merge cat
+
+# Delete a branch
+$ git branch -d cat
+
+```
