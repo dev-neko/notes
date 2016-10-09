@@ -150,3 +150,21 @@ $ git merge cat
 $ git branch -d cat
 
 ```
+
+## Git Real : Level 4
+
+### Fetch, Pull, Conflicts関連
+
+```
+# Get remote codes and update local ones.
+$ git pull
+$ git push
+
+# Fetch doesn't update local codes. So merge after fetch.
+$ git fetch
+$ git merge origin/master
+
+# When a conflict occurred, edit a conflicted file manually.
+$ git commit -a index.html
+$ git push
+```
