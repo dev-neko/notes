@@ -168,3 +168,63 @@ $ git merge origin/master
 $ git commit -a index.html
 $ git push
 ```
+
+
+## Git Real : Level 5
+
+### Branch関連
+
+リモートのブランチを削除した時の動きがまだよくわかってない。
+
+```
+# Create a local branch and push it to remote.
+$ git checkout -b shopping_cart
+$ git push origin shopping_cart
+
+# Add a file and push it.
+$ git add cart.rb
+$ git commit -a -m "Add basic cart ability"
+$ git push
+
+# When a co-worker pull that branch.
+$ git pull
+$ git branch # But stille you can't see that branch
+$ git branch -r # List all remote branches. Now you can see that branch!!
+
+$ git checkout shopping_cart
+
+# You can check the details of remote.
+$ git remote show origin
+
+# Remove a branch from remote
+$ git push origin :shopping_cart
+
+# The local branch is still left. So remove it.
+$ git branch -d shopping_cart
+
+# Even if there are commits you don't merge yet, remove the branch forcibly.
+$ git branch -D shopping_cart
+
+# When a co-worker remove a remote branch you have referred
+# Confirm the details of remote and remove a reference.
+$ git remote show origin
+$ git remote prune origin
+
+```
+
+### Tag関連
+
+```
+# List all tags
+$ git tag
+
+# Checkout code at commit
+$ git checkout v0.0.1
+
+# Add a new tag
+$ git tag -a v0.0.3 -m "version 0.0.3"
+
+# To push new tags
+$ git push --tags
+
+```
