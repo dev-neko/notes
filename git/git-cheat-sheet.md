@@ -228,3 +228,44 @@ $ git tag -a v0.0.3 -m "version 0.0.3"
 $ git push --tags
 
 ```
+
+## Git Real : Level 6
+
+### Rebase関連
+
+```
+# Fetch a co-worker fix.
+$ git fetch
+
+$ git rebase
+
+# 'rebase' does 3 things
+# 1. Move all changes to master which are not in origin/master to a temporary area.
+# 2. Run all origin/master commits.
+# 3. Run all commits in the temporary area, one at a time.
+# => No merge commit!!
+
+# Move to admin branch and rebase at there.
+# Admin commits put above master commits.
+$ git checkout admin
+$ git rebase master
+
+# Back to master and merge.
+$ git checkout master
+$ git merge admin
+
+
+# When a conflict occurred
+$ git fetch
+$ git rebase # Woops, there is a conflict on README.txt!!
+
+# After edit README.txt manually
+$ git add README.txt
+$ git rebase --continue
+
+# Anothter option
+$ git rebase --skip
+$ git rebase --abort
+
+
+```
