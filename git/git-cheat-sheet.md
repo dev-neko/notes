@@ -269,3 +269,65 @@ $ git rebase --abort
 
 
 ```
+
+## Git Real : Level 7
+
+### log, config, alias関連
+
+```
+$ git config --global color.ui true
+
+$ git log --pretty=oneline
+
+$ git log --pretty=format "%h %ad %s [%an]"
+
+$ git log --oneline -p
+
+$ git log --oneline --stat
+
+$ git log --oneline --graph
+
+$ git log --until=1.minute.ago
+
+$ git log --since=1.day.ago
+
+$ git diff
+$ git diff HEAD
+$ git diff HEAD^
+$ git diff HEAD^^
+$ git diff HEAD~5
+$ git diff HEAD^..HEAD
+
+# Diff between 2 commits
+$ git diff <HASH1> <HASH2>
+
+# Diff between branches
+$ git diff master bird
+
+# time-based diff
+$ git diff --since=1.week.ago --until=1.minute.ago
+
+# Blame
+$ git blame index.html --date short
+
+# Remove
+$ git rm README.txt
+$ git commit -m "Remove README.txt"
+
+# Stop tracking
+$ git rm --cached hoge.txt
+
+# Config
+$ git config --list
+
+# Alias
+$ git config --global alias.mylog "log --pretty=format: '%h %s [%an]' --graph"
+$ git config --global alias.lol "log --graph --decorate --pretty=oneline --abbrev-commit --all"
+
+$ git config --global alias.st status
+$ git config --global alias.co checkout
+$ git config --global alias.br branch
+$ git config --global alias.ci commit
+
+
+```
