@@ -331,3 +331,28 @@ $ git config --global alias.ci commit
 
 
 ```
+
+## Git Real 2 : Level 1
+
+### Interactive rebase
+
+Interactive rebaseの際のコミットの順番は古い方が一番上に来る。（git logでは新しい方が一番上に来る）
+
+```
+# noop
+$ git rebase -i HEAD
+
+# 1 commit before
+$ git rebase -i HEAD^
+
+# 3 commits before
+$ git rebase -i HEAD^3
+
+```
+
+Interactive rebaseで行うことが出来る操作
+
+- pick : そのままコミットを採用する場合。コミットの順番を変えたい場合は、pickのまま順番だけ入れ替える。
+- reword : コミットメッセージを変更する場合
+- edit : コミットを分割する場合。編集したファイルはステージングへ追加、コミットして、git rebase --continueを行う。
+- squash : コミットをまとめる場合
