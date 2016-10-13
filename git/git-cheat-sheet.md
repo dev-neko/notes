@@ -356,3 +356,60 @@ Interactive rebaseで行うことが出来る操作
 - reword : コミットメッセージを変更する場合
 - edit : コミットを分割する場合。編集したファイルはステージングへ追加、コミットして、git rebase --continueを行う。
 - squash : コミットをまとめる場合
+
+
+## Git Real 2 : Level 2
+
+### Stash
+
+変更途中のファイルをコミットせずに、一時的に退避しておく機能。
+
+```
+
+# Save changes to a temporary area and reset to HEAD
+$ git stash save
+$ git stash # alias
+
+# There is no diff
+$ git diff
+$ git status
+
+# Retrieve changes from a temporary ares and apply it.
+$ git stash apply
+
+# Show list of stash
+$ git stash list
+
+# Apply specific stash (default is stash@{0})
+$ git stash apply stash@{1}
+
+# Discard a stash
+$ git stash drop
+
+# Alias. Apply and drop in the same time
+$ git stash pop
+
+# Stash only unstaged files. So you can commit staged files.
+$ git stash save --keep-index
+
+# Stash even untracked files.
+$ git stash save --include--untracked
+
+# Show stash content
+$ git stash show
+$ git stash show stash@{1}
+
+# You can use list options the same as "git log" options.
+$ git stash list --stat
+$ git stash list --patch
+
+# You can save a message like as a commit message.
+$ git stash save "Hogehoge..."
+
+# Create a new branch using a stash and pop it automatically.
+$ git stash branch hogehoge stash@{0}
+
+# Clear all stashes
+$ git stash clear
+
+```
