@@ -413,3 +413,34 @@ $ git stash branch hogehoge stash@{0}
 $ git stash clear
 
 ```
+
+
+## Git Real 2 : Level 3
+
+### 履歴の廃棄
+
+```
+# Remove the password.txt file from all previous commits.
+# ファイルが無いとでも実行失敗しないように-fをつけること。
+$ git filter-branch --tree-filter "rm -f password.txt" -- --all
+
+# Remove from current commit.
+$ git filter-branch --tree-filter "rm -f password.txt" -- HEAD
+
+# Remove all video files.
+$ git filter-branch --tree-filter 'find  -name "*.mp4" -exec rm {} ¥;'
+
+# Remove from files without checking it out. Command will be executed against staging area.
+# ファイルが無いとでも実行失敗しないように--ignore-unmatchをつけること。
+$ git filter-branch --index-filter 'git rm --cached --ignore-unmatch password.txt'
+
+
+# Force. Remove even backup.
+$ git filter-branch -f --tree-filter 'rm -f password.txt'
+
+# Drop empty commits.
+$ git filter-branch -f --prune-empty -- --all
+
+$ git filter-branch --tree-filter 'rm -f password.txt' --prune-empty -- --all
+
+```
