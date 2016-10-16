@@ -444,3 +444,64 @@ $ git filter-branch -f --prune-empty -- --all
 $ git filter-branch --tree-filter 'rm -f password.txt' --prune-empty -- --all
 
 ```
+
+## Git Real 2 : Level 4
+
+### 改行コードの設定
+
+```
+# On Unix-like systems (Linux, OSX, etc). Changes CR/LF to LF on commit.
+git config --global core.autocrlf input
+
+# On Windows systems. Changes LF to CR/LF on chckeout.
+git config --global core.autocrlf true
+
+# On Windows-only projects. Does no conversion.
+git config --global core.autocrlf false
+
+```
+
+### gitattribute
+
+ファイル種別の設定
+
+```
+* text=auto
+
+*.html text
+*.css text
+
+*.bat eol=crlf
+*.sh eol=lf
+
+*.jpg binary
+*.png binary
+
+```
+
+### cherry-picking
+
+あるブランチの特定のコミットのみを、マスターにコミットしたい場合に使用する。
+
+```
+# まずリリースブランチをチェックアウト
+git checkout production
+
+# リリースブランチに適用したいコミットのハッシュを指定する。
+git cherry-pick <hash>
+
+# 適用するコミットのメッセージを変えたい時
+git cherry-pick --edit <hash>
+
+# 複数のコミットを適用したい時。このコマンドだけではコミットされないので、手動でコミットすること。
+git cherry-pick --no-commit <hash> <hash2>
+
+# コミット元を追跡したい時。しかし、これはパブリックのブランチからコミットを適用する時にしか使えないので注意。
+# （ローカルブランチは他の人から見えないので）
+git cherry-pick -x <hash>
+
+# 元々コミットした人をログ上で維持したい時
+# Authorは保持され、Signed-off-byのところに、現在のユーザ名が記載される。
+git cherry-pick -signoff <hash>
+
+```
