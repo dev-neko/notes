@@ -550,3 +550,30 @@ git config --global alias.pushall "push --recurse-submodules=on-demand"
 git pushall
 
 ```
+
+## Git Real 2 : Level 6
+
+### Reflog
+
+Gitはコミットの履歴が全て残っているので、ファイルやブランチを削除した際でもreflogを使用すれば戻せる。
+
+```
+git log --pretty=oneline
+git reset --hard 43c1
+
+git reflog
+
+# 履歴を元に戻す時の例
+git reset --hard 1e62
+git reset --hard HEAD@{1}
+
+# reflogの詳細な情報が見れる
+git log --walk-reflogs
+
+# 削除したけどブランチを復活させたい
+git branch hoge 280e
+git branch hoge HEAD@{1}
+git checkout hoge
+git log --oneline
+
+```
