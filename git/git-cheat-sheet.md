@@ -505,3 +505,48 @@ git cherry-pick -x <hash>
 git cherry-pick -signoff <hash>
 
 ```
+
+
+## Git Real 2 : Level 5
+
+### Submodule
+
+```
+# サブモジュールを追加
+git submodule add git@example.com:css.git
+cat .gitmodules
+
+# プロジェクトをクローン（この時点でサブモジュールディレクトリは空っぽ）
+git clone <レポジトリ>
+
+# サブモジュールを取得
+git submodule init
+git submodule update
+
+# もしなんのブランチも持っていない状態でコミットしてしまったら、マージする。
+git checkout master
+git merge <hash>
+git log --oneline
+
+# 1. まずはサブモジュールで変更、コミット、プッシュする。
+# 2. その後、親プロジェクトに移動し、サブモジュールをコミット、プッシュする必要がある。
+cd css
+git add styles.css
+git commit -m "hoge"
+
+cd ..
+git add css
+git commit -m "foo"
+
+# サブモジュールをプッシュし忘れると、他の人がプルした場合にエラーが起きてしまう。
+# 防止策1 : サブモジュールがプッシュされてなかったら、親プロジェクトのプッシュを中断する。
+git push --recurse-submodules=check
+
+# 防止策2 : 親プロジェクトをプッシュする際に、サブモジュールも含めてプッシュする。
+git push --recurse-submodules=on-demand
+
+# 防止策2のエイリアスを作っておくと楽。
+git config --global alias.pushall "push --recurse-submodules=on-demand"
+git pushall
+
+```
